@@ -1,4 +1,5 @@
-﻿using Microsoft.Extensions.Logging;
+﻿using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.Logging;
 
 namespace ConsoleWorkerFullTest;
 
@@ -8,19 +9,25 @@ public sealed class ServiceRepo : IServiceRepo
 
     private readonly IRepo _repo;
     private readonly ILogger<ServiceRepo> _logger;
+    private readonly IConfiguration _configuration;
     
     public ServiceRepo(
         IRepo repo,
-        ILogger<ServiceRepo> logger)
+        ILogger<ServiceRepo> logger,
+        IConfiguration configuration)
     {
         _repo = repo;
         _logger = logger;
+        _configuration = configuration;
     }
 
     #endregion
     
     public void ShowMessage()
     {
+        string prodConString = _configuration.GetConnectionString("Prod").ToString();
+        _logger.LogWarning($"Prod Connection String -> {prodConString}");
+
         _logger.LogWarning($"Ejecute method {nameof(ShowMessage)} into {nameof(ServiceRepo)}");
         _repo.ShowMessage();
     }
