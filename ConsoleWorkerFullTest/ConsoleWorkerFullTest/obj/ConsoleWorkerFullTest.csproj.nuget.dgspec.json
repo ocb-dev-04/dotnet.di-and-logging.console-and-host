@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\oscar\\OneDrive\\Desktop\\vs_public_folder\\ConsoleWorkerFullTest\\ConsoleWorkerFullTest\\ConsoleWorkerFullTest.csproj": {}
+    "C:\\Users\\oscar\\dev\\dev_code\\dotnet.di-and-logging.console-and-host\\ConsoleWorkerFullTest\\ConsoleWorkerFullTest\\ConsoleWorkerFullTest.csproj": {}
   },
   "projects": {
-    "C:\\Users\\oscar\\OneDrive\\Desktop\\vs_public_folder\\ConsoleWorkerFullTest\\ConsoleWorkerFullTest\\ConsoleWorkerFullTest.csproj": {
+    "C:\\Users\\oscar\\dev\\dev_code\\dotnet.di-and-logging.console-and-host\\ConsoleWorkerFullTest\\ConsoleWorkerFullTest\\ConsoleWorkerFullTest.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\oscar\\OneDrive\\Desktop\\vs_public_folder\\ConsoleWorkerFullTest\\ConsoleWorkerFullTest\\ConsoleWorkerFullTest.csproj",
+        "projectUniqueName": "C:\\Users\\oscar\\dev\\dev_code\\dotnet.di-and-logging.console-and-host\\ConsoleWorkerFullTest\\ConsoleWorkerFullTest\\ConsoleWorkerFullTest.csproj",
         "projectName": "ConsoleWorkerFullTest",
-        "projectPath": "C:\\Users\\oscar\\OneDrive\\Desktop\\vs_public_folder\\ConsoleWorkerFullTest\\ConsoleWorkerFullTest\\ConsoleWorkerFullTest.csproj",
+        "projectPath": "C:\\Users\\oscar\\dev\\dev_code\\dotnet.di-and-logging.console-and-host\\ConsoleWorkerFullTest\\ConsoleWorkerFullTest\\ConsoleWorkerFullTest.csproj",
         "packagesPath": "C:\\Users\\oscar\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\oscar\\OneDrive\\Desktop\\vs_public_folder\\ConsoleWorkerFullTest\\ConsoleWorkerFullTest\\obj\\",
+        "outputPath": "C:\\Users\\oscar\\dev\\dev_code\\dotnet.di-and-logging.console-and-host\\ConsoleWorkerFullTest\\ConsoleWorkerFullTest\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
@@ -45,6 +45,14 @@
           "targetAlias": "net6.0",
           "dependencies": {
             "Microsoft.Extensions.DependencyInjection": {
+              "target": "Package",
+              "version": "[6.0.0, )"
+            },
+            "Microsoft.Extensions.Hosting": {
+              "target": "Package",
+              "version": "[6.0.1, )"
+            },
+            "Microsoft.Extensions.Hosting.Abstractions": {
               "target": "Package",
               "version": "[6.0.0, )"
             },
