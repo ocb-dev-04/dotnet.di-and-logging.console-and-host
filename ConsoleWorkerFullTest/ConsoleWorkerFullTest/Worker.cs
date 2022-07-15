@@ -1,4 +1,5 @@
-﻿using Microsoft.Extensions.Hosting;
+﻿using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using System;
 using System.Collections.Generic;
@@ -10,12 +11,17 @@ namespace ConsoleWorkerFullTest
 {
     public class Worker : BackgroundService
     {
+        #region Props & Ctor
+        
         private readonly ILogger<Worker> _logger;
-
-        public Worker(ILogger<Worker> logger)
+        private readonly IConfiguration _configuration;
+        public Worker(ILogger<Worker> logger, IConfiguration configuration)
         {
             _logger = logger;
+            _configuration = configuration;
         }
+
+        #endregion
 
         protected override async Task ExecuteAsync(CancellationToken stoppingToken)
         {

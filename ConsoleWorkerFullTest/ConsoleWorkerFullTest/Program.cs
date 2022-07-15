@@ -1,24 +1,25 @@
 ﻿using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Hosting;
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 
 using ConsoleWorkerFullTest;
 
-using IHost host = CreateHostBuilder(args)
-    .ConfigureServices((hostContext, services) =>
-    {
-        services.AddHostedService<Worker>();
-    })
-    .Build();
+string environment = Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT");
 
-await host.RunAsync();
+IConfigurationRoot configuration = new ConfigurationBuilder()
+     .SetBasePath(Directory.GetCurrentDirectory())
+     .AddJsonFile($"appsettings.json", true,true)
+     .AddEnvironmentVariables()
+     .AddCommandLine(args)
+     .Build();
 
-
-static IHostBuilder CreateHostBuilder(string[] args) =>
-    Host.CreateDefaultBuilder(args)
+IHostBuilder host = Host.CreateDefaultBuilder(args)
     .ConfigureServices((_, services) =>
     {
+        services.AddSingleton<IConfiguration>(configuration);
         services.AddTransient<Worker>();
+        services.AddHostedService<Worker>();
     })
     .ConfigureLogging((_, logging) =>
     {
@@ -26,8 +27,18 @@ static IHostBuilder CreateHostBuilder(string[] args) =>
         logging.AddSimpleConsole(options => options.IncludeScopes = true);
         logging.AddEventLog();
     });
+    //.ConfigureServices((hostContext, services) =>
+    //{
+    //});
+    //.ConfigureHostConfiguration(options =>
+    //    options
+    //        .SetBasePath(Directory.GetCurrentDirectory())
+    //        .AddJsonFile("appsettings.json", false, false)
+    //        .AddEnvironmentVariables()
+    //);
 
-
+IHost builder = host.Build();
+await builder.RunAsync();
 
 /// <summary>
 /// Example with generic console
