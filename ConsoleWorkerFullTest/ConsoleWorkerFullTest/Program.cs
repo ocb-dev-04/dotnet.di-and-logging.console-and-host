@@ -5,40 +5,7 @@ using Microsoft.Extensions.DependencyInjection;
 
 using ConsoleWorkerFullTest;
 
-//string environment = Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT");
-
-//IConfigurationRoot configuration = new ConfigurationBuilder()
-//     .SetBasePath(Directory.GetCurrentDirectory())
-//     .AddJsonFile($"appsettings.json", false,false)
-//     .AddEnvironmentVariables()
-//     .AddCommandLine(args)
-//     .Build();
-
-//IHostBuilder host = Host.CreateDefaultBuilder(args)
-//    .ConfigureServices((_, services) =>
-//    {
-//        services.AddSingleton<IConfiguration>(configuration);
-//        services.AddTransient<Worker>();
-//        services.AddHostedService<Worker>();
-//    })
-//    .ConfigureLogging((_, logging) =>
-//    {
-//        logging.ClearProviders();
-//        logging.AddSimpleConsole(options => options.IncludeScopes = true);
-//        logging.AddEventLog();
-//    });
-//    //.ConfigureServices((hostContext, services) =>
-//    //{
-//    //});
-//    //.ConfigureHostConfiguration(options =>
-//    //    options
-//    //        .SetBasePath(Directory.GetCurrentDirectory())
-//    //        .AddJsonFile("appsettings.json", false, false)
-//    //        .AddEnvironmentVariables()
-//    //);
-
-//IHost builder = host.Build();
-//await builder.RunAsync();
+// ********************* using generic console *****************************
 
 namespace ConsoleWorkerFullTest;
 
@@ -90,3 +57,40 @@ class Program
     static void Main()
         => _serviceProvider.GetRequiredService<IServiceRepo>().ShowMessage();
 }
+
+// ************************** using worker *********************************
+
+//string environment = Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT");
+
+//IConfigurationRoot configuration = new ConfigurationBuilder()
+//     .SetBasePath(Directory.GetCurrentDirectory())
+//     .AddJsonFile($"appsettings.json", false,false)
+//     .AddEnvironmentVariables()
+//     .AddCommandLine(args)
+//     .Build();
+
+//IHostBuilder host = Host.CreateDefaultBuilder(args)
+//    .ConfigureServices((_, services) =>
+//    {
+//        services.AddSingleton<IConfiguration>(configuration);
+//        services.AddTransient<Worker>();
+//        services.AddHostedService<Worker>();
+//    })
+//    .ConfigureLogging((_, logging) =>
+//    {
+//        logging.ClearProviders();
+//        logging.AddSimpleConsole(options => options.IncludeScopes = true);
+//        logging.AddEventLog();
+//    });
+//    //.ConfigureServices((hostContext, services) =>
+//    //{
+//    //});
+//    //.ConfigureHostConfiguration(options =>
+//    //    options
+//    //        .SetBasePath(Directory.GetCurrentDirectory())
+//    //        .AddJsonFile("appsettings.json", false, false)
+//    //        .AddEnvironmentVariables()
+//    //);
+
+//IHost builder = host.Build();
+//await builder.RunAsync();
