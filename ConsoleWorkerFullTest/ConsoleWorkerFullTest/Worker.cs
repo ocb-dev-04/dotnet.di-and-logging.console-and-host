@@ -25,6 +25,9 @@ namespace ConsoleWorkerFullTest
 
         protected override async Task ExecuteAsync(CancellationToken stoppingToken)
         {
+            string prodConString = _configuration.GetConnectionString("Prod").ToString();
+            _logger.LogWarning($"Prod Connection String -> {prodConString}");
+
             while (!stoppingToken.IsCancellationRequested)
             {
                 _logger.LogWarning("Worker running at: {time}", DateTimeOffset.Now);

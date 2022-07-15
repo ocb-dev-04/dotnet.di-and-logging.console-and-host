@@ -70,3 +70,4 @@ C:\Users\oscar\dev\dev_code\dotnet.di-and-logging.console-and-host\ConsoleWorker
 C:\Users\oscar\dev\dev_code\dotnet.di-and-logging.console-and-host\ConsoleWorkerFullTest\ConsoleWorkerFullTest\obj\Debug\net6.0\ConsoleWorkerFullTest.pdb
 C:\Users\oscar\dev\dev_code\dotnet.di-and-logging.console-and-host\ConsoleWorkerFullTest\ConsoleWorkerFullTest\obj\Debug\net6.0\ConsoleWorkerFullTest.genruntimeconfig.cache
 C:\Users\oscar\dev\dev_code\dotnet.di-and-logging.console-and-host\ConsoleWorkerFullTest\ConsoleWorkerFullTest\obj\Debug\net6.0\ref\ConsoleWorkerFullTest.dll
+C:\Users\oscar\dev\dev_code\dotnet.di-and-logging.console-and-host\ConsoleWorkerFullTest\ConsoleWorkerFullTest\bin\Debug\net6.0\appsettings.json

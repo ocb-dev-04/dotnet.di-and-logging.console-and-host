@@ -9,7 +9,7 @@ string environment = Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT"
 
 IConfigurationRoot configuration = new ConfigurationBuilder()
      .SetBasePath(Directory.GetCurrentDirectory())
-     .AddJsonFile($"appsettings.json", true,true)
+     .AddJsonFile($"appsettings.json", false,false)
      .AddEnvironmentVariables()
      .AddCommandLine(args)
      .Build();
