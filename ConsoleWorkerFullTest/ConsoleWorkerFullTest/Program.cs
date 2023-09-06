@@ -1,13 +1,15 @@
 ﻿using Microsoft.Extensions.Logging;
-using Microsoft.Extensions.Hosting;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 
-using ConsoleWorkerFullTest;
-
-// ********************* using generic console *****************************
+using ConsoleWorkerFullTest.Context;
+using ConsoleWorkerFullTest.Services;
+using ConsoleWorkerFullTest.Repositoties;
 
 namespace ConsoleWorkerFullTest;
+
+// ********************* using generic console *****************************
 
 /// <summary>
 /// Example with generic console
@@ -31,35 +33,35 @@ class Program
                      .Build()
                  )
                 .AddTransient<Program>()
+                .AddTransient<IStart, Start>()
                 .AddTransient<IRepo, Repo>()
                 .AddTransient<IServiceRepo, ServiceRepo>()
+                .AddTransient<IDatabaseServices, DatabaseServices>()
                 .AddLogging(configure =>
                     configure.AddFilter("Microsoft", LogLevel.Warning)
                         .AddFilter("System", LogLevel.Warning)
                         .AddFilter("NonHostConsoleApp.Program", LogLevel.Debug)
                         .AddConsole()
                 )
+                .AddDbContext<AppDbContext>(o =>
+                {
+                    o.UseSqlServer("Server=.;Database=test_database;Trusted_Connection=True;TrustServerCertificate=True;");
+                })
                 .BuildServiceProvider();
 
     #endregion
 
-    #region Ctor
-
-    private readonly IServiceRepo _serviceRepo;
-
-    public Program(IServiceRepo serviceRepo)
-    {
-        _serviceRepo = serviceRepo ?? throw new ArgumentNullException(nameof(serviceRepo));
-    }
-
-    #endregion
-
     static void Main()
-        => _serviceProvider.GetRequiredService<IServiceRepo>().ShowMessage();
+        => _serviceProvider.GetRequiredService<IStart>().Run();
 }
 
 // ************************** using worker *********************************
 
+/// <summary>
+/// Example with generic console
+/// </summary>
+//class Program
+//{
 //string environment = Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT");
 
 //IConfigurationRoot configuration = new ConfigurationBuilder()
@@ -94,3 +96,4 @@ class Program
 
 //IHost builder = host.Build();
 //await builder.RunAsync();
+//}

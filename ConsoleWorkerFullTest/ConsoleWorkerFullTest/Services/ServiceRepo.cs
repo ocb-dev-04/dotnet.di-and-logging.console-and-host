@@ -1,7 +1,9 @@
-﻿using Microsoft.Extensions.Configuration;
+﻿using ConsoleWorkerFullTest.Repositoties;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
 
-namespace ConsoleWorkerFullTest;
+namespace ConsoleWorkerFullTest.Services;
 
 public sealed class ServiceRepo : IServiceRepo
 {
@@ -10,7 +12,7 @@ public sealed class ServiceRepo : IServiceRepo
     private readonly IRepo _repo;
     private readonly ILogger<ServiceRepo> _logger;
     private readonly IConfiguration _configuration;
-    
+
     public ServiceRepo(
         IRepo repo,
         ILogger<ServiceRepo> logger,
@@ -22,7 +24,7 @@ public sealed class ServiceRepo : IServiceRepo
     }
 
     #endregion
-    
+
     public void ShowMessage()
     {
         string prodConString = _configuration.GetConnectionString("Prod").ToString();
