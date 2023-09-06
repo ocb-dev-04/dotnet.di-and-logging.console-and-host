@@ -43,10 +43,7 @@ class Program
                         .AddFilter("NonHostConsoleApp.Program", LogLevel.Debug)
                         .AddConsole()
                 )
-                .AddDbContext<AppDbContext>(o =>
-                {
-                    o.UseSqlServer("Server=.;Database=test_database;Trusted_Connection=True;TrustServerCertificate=True;");
-                })
+                .AddDbContext<AppDbContext>()
                 .BuildServiceProvider();
 
     #endregion
