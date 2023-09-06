@@ -34,8 +34,9 @@ class Program
                  )
                 .AddTransient<Program>()
                 .AddTransient<IStart, Start>()
-                .AddTransient<IRepo, Repo>()
-                .AddTransient<IServiceRepo, ServiceRepo>()
+                .AddTransient<IExampleService, ExampleService>()
+                .AddTransient<IExampleRepo, ExampleRepo>()
+                .AddTransient<IDatabaseRepo, DatabaseRepo>()
                 .AddTransient<IDatabaseServices, DatabaseServices>()
                 .AddLogging(configure =>
                     configure.AddFilter("Microsoft", LogLevel.Warning)
@@ -43,7 +44,11 @@ class Program
                         .AddFilter("NonHostConsoleApp.Program", LogLevel.Debug)
                         .AddConsole()
                 )
-                .AddDbContext<AppDbContext>()
+                .AddDbContext<AppDbContext>(o =>
+                {
+                    o.EnableSensitiveDataLogging();
+                    o.LogTo(Console.WriteLine);
+                })
                 .BuildServiceProvider();
 
     #endregion

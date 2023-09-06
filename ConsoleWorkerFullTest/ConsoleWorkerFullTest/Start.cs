@@ -7,12 +7,12 @@ public class Start : IStart
 {
     #region Ctor
 
-    private readonly IServiceRepo _serviceRepo;
+    private readonly IExampleService _serviceRepo;
     private readonly IDatabaseServices _databaseServices;
     private readonly ILogger<Start> _logger;
 
     public Start(
-        IServiceRepo serviceRepo,
+        IExampleService serviceRepo,
         IDatabaseServices databaseServices,
         ILogger<Start> logger)
     {
@@ -28,6 +28,7 @@ public class Start : IStart
         try
         {
             _databaseServices.HandleMigrations();
+            _databaseServices.CreateAndQueries();
             _serviceRepo.ShowMessage();
         }
         catch (Exception e)

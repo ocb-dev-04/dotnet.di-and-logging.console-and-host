@@ -5,17 +5,17 @@ using Microsoft.Extensions.Logging;
 
 namespace ConsoleWorkerFullTest.Services;
 
-public sealed class ServiceRepo : IServiceRepo
+public sealed class ExampleService : IExampleService
 {
     #region Props & Ctor
 
-    private readonly IRepo _repo;
-    private readonly ILogger<ServiceRepo> _logger;
+    private readonly IExampleRepo _repo;
+    private readonly ILogger<ExampleService> _logger;
     private readonly IConfiguration _configuration;
 
-    public ServiceRepo(
-        IRepo repo,
-        ILogger<ServiceRepo> logger,
+    public ExampleService(
+        IExampleRepo repo,
+        ILogger<ExampleService> logger,
         IConfiguration configuration)
     {
         _repo = repo;
@@ -30,12 +30,12 @@ public sealed class ServiceRepo : IServiceRepo
         string prodConString = _configuration.GetConnectionString("Prod").ToString();
         _logger.LogWarning($"Prod Connection String -> {prodConString}");
 
-        _logger.LogWarning($"Ejecute method {nameof(ShowMessage)} into {nameof(ServiceRepo)}");
+        _logger.LogWarning($"Ejecute method {nameof(ShowMessage)} into {nameof(ExampleService)}");
         _repo.ShowMessage();
     }
 }
 
-public interface IServiceRepo
+public interface IExampleService
 {
     void ShowMessage();
 }

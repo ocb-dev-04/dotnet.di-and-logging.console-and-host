@@ -1,20 +1,17 @@
 ﻿using ConsoleWorkerFullTest.Context;
-using ConsoleWorkerFullTest.Services;
-using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.Extensions.Logging;
 
 namespace ConsoleWorkerFullTest.Repositoties;
 
-public sealed class Repo : IRepo
+public sealed class ExampleRepo : IExampleRepo
 {
     #region Props & Ctor
 
-    private readonly ILogger<ServiceRepo> _logger;
+    private readonly ILogger<ExampleRepo> _logger;
     private readonly AppDbContext _appDbContext;
 
-    public Repo(
-        ILogger<ServiceRepo> logger,
+    public ExampleRepo(
+        ILogger<ExampleRepo> logger,
         AppDbContext context)
     {
         _logger = logger;
@@ -25,11 +22,11 @@ public sealed class Repo : IRepo
 
     public void ShowMessage()
     {
-        _logger.LogInformation($"Hello from --> {nameof(Repo)} ejecuting {nameof(ShowMessage)} method");
+        _logger.LogInformation($"Hello from --> {nameof(ExampleRepo)} ejecuting {nameof(ShowMessage)} method");
     }
 }
 
-public interface IRepo
+public interface IExampleRepo
 {
     void ShowMessage();
 }
